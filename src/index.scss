@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.reporting-container-item {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+
+  .title-container {
+      display: flex;
+      flex-direction: column;
+      background: #ffcf01;
+      align-content: space-between;
+      padding: 10px 10px 10px 10px;
+      align-items: center;
+      font-family: 'RetHat';
+
+      img {
+          width: 125px;
+      }
+
+      .container-information-title {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .title-data {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+
+              h1.eventName {
+                  font-size: 20px;
+                  margin: 0px;
+              }
+          }
+
+          .description-container {
+              display: flex;
+              margin-top: 5px;
+              margin-left: 16px;
+              justify-content: flex-start;
+          }
+
+          .description-first {
+              padding: 5px 12px 5px 12px;
+              margin-left: 5px;
+              color: white;
+              width: max-content;
+              border-radius: 15px 0px 0px 15px;
+          }
+
+          .description-end {
+              padding: 5px 12px 5px 12px;
+              width: max-content;
+              color: white;
+              border-radius: 0px 15px 15px 0px;
+          }
+      }
+
+
+  }
+
+  .data-container {
+      height: 140px;
+      background-color: #f2f2f2;
+      width: 615px;
+      display: flex;
+      flex-direction: row;
+      border-radius: 0px 15px 15px 0px;
+      padding: 10px 10px 10px 10px;
+      font-family: 'RetHat';
+      align-items: center;
+      justify-content: center;
+
+      .information {
+          text-align: center;
+          margin-top: 2px;
+          margin-bottom: 0px;
+      }
+
+      .count-container{
+          width: 69px;
+          height: 81px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 20px;
+      }
+
+
+      .number-count {
+          padding: 19px 23px;
+          border-radius: 50%;
+          width: 23px;
+          display: flex;
+          justify-content: center;
+          font-size: 22px;
+      }
+  }
+
+}

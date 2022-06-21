@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import AgregarProducto from './pages/agregarProducto'
+import ListadoDeProductos from './pages/ListadodeProductos'
 
 const App = () => {
 	let token = localStorage.getItem('token')
@@ -59,6 +60,10 @@ const App = () => {
 							{ token ? <li className="nav-item">
 								<a className="nav-link" href='/agregarproducto'>agregar producto</a>
 							</li> : null }
+
+							{ token ? <li className="nav-item">
+								<a className="nav-link" href='/productos'>Listado de Produuctos</a>
+							</li> : null }
 						</ul>
 					</div>
 					<div className="d-flex align-items-center">
@@ -105,6 +110,7 @@ const App = () => {
 				<Route path="/register" exact component={Register} />
 				<Route path="/dashboard" exact component={Dashboard} />
 				<Route path="/agregarproducto" exact component={AgregarProducto} />
+				<Route path="/productos" exact component={ListadoDeProductos} />
 			</BrowserRouter>
 		</div>
 	)

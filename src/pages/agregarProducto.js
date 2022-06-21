@@ -8,7 +8,13 @@ const AgregarProducto = () => {
 	const [nameproduct, setNameProduct] = useState('')
 	const [descproduct, setDescProduct] = useState('')
 	const [precio, setPrecio] = useState('')
+	const [file, setFile] = useState(null)
 	const [stock, setStock] = useState('')
+
+	const selectedHandler = e => {
+		setFile(e.target.files[0])
+	}
+
 
 	if (token === null) {
 		window.location.href = 'http://localhost:3000/login';
@@ -17,25 +23,30 @@ const AgregarProducto = () => {
 	async function addProduct(event) {
 		event.preventDefault()
 
+		if (!file) {
+			alert('you must upload file')
+			return
+		}
+
+		const formdata = new FormData()
+		formdata.append('image', file)
+		formdata.append('name', nameproduct)
+		formdata.append('description', descproduct)
+		formdata.append('price', precio)
+		formdata.append('stock', stock)
+
 
 		const response = await fetch('http://localhost:1337/api/createProduct', {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name: nameproduct,
-				description: descproduct,
-				price: precio,
-				stock: stock
-			}),
+			body: formdata
 		})
 
 
 		const data = await response.json()
 
-		if (data.status === 'ok') {
-			history.push('/login')
+		if (data.status) {
+			alert('Producto Creado Correctamente');
+			window.location.href = 'http://localhost:3000/productos';
 		}
 
 	}
@@ -57,6 +68,8 @@ const AgregarProducto = () => {
 					type="text"
 					placeholder="Descripcion del Producto"
 				/>
+				<input id="fileinput" onChange={selectedHandler} className="form-control" type="file" />
+				<br />
 				<br />
 				<input
 					value={precio}
