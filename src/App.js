@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import AgregarProducto from './pages/agregarProducto'
 import ListadoDeProductos from './pages/ListadodeProductos'
+import Categorias from './pages/categorias'
 
 const App = () => {
 	let token = localStorage.getItem('token')
@@ -58,6 +59,10 @@ const App = () => {
 							</li> : null}
 
 							{ token ? <li className="nav-item">
+								<a className="nav-link" href='/categorias'>Crear Categorias</a>
+							</li> : null }
+
+							{ token ? <li className="nav-item">
 								<a className="nav-link" href='/agregarproducto'>agregar producto</a>
 							</li> : null }
 
@@ -109,6 +114,7 @@ const App = () => {
 				<Route path="/login" exact component={Login} />
 				<Route path="/register" exact component={Register} />
 				<Route path="/dashboard" exact component={Dashboard} />
+				<Route path="/categorias" exact component={Categorias} />
 				<Route path="/agregarproducto" exact component={AgregarProducto} />
 				<Route path="/productos" exact component={ListadoDeProductos} />
 			</BrowserRouter>

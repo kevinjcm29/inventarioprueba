@@ -1,18 +1,29 @@
-import React from 'react'
+import React , { useEffect } from 'react'
+import Select from 'react-select'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
 const AgregarProducto = () => {
+	const [category, categories] = useState()
+    async function populateQuote() {
+        const req = await fetch('http://localhost:1337/api/getCategories')
+
+        const data = await req.json()
+        categories(data.category)
+    }
 	let token = localStorage.getItem('token')
-	const history = useHistory()
 	const [nameproduct, setNameProduct] = useState('')
 	const [descproduct, setDescProduct] = useState('')
 	const [precio, setPrecio] = useState('')
+	const [categoryS, setCategory] = useState('')
 	const [file, setFile] = useState(null)
 	const [stock, setStock] = useState('')
 
 	const selectedHandler = e => {
 		setFile(e.target.files[0])
+	}
+	
+	const handleSelectCategory = ( {name} ) => {
+		setCategory(name);
 	}
 
 
@@ -34,6 +45,7 @@ const AgregarProducto = () => {
 		formdata.append('description', descproduct)
 		formdata.append('price', precio)
 		formdata.append('stock', stock)
+		formdata.append('category', categoryS)
 
 
 		const response = await fetch('http://localhost:1337/api/createProduct', {
@@ -50,6 +62,9 @@ const AgregarProducto = () => {
 		}
 
 	}
+	useEffect(() => {
+        populateQuote()
+    }, [])
 
 	return (
 		<div>
@@ -85,6 +100,13 @@ const AgregarProducto = () => {
 					placeholder="Stock"
 				/>
 				<br />
+				<div>
+					<p>Categorias</p>
+					<Select
+						options = {category}
+						onChange = {handleSelectCategory}
+					/>
+				</div>
 				<input type="submit" value="Crear Producto" />
 			</form>
 		</div>

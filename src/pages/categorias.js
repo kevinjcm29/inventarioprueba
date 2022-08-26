@@ -1,0 +1,53 @@
+import React from 'react'
+import { useState } from 'react'
+
+const Categorias = () => {
+	let token = localStorage.getItem('token')
+	const [namecategory, setNameCategory] = useState('');;
+
+	if (token === null) {
+		window.location.href = 'http://localhost:3000/login';
+	}
+
+	async function addProduct(event) {
+
+		const formdata = new FormData()
+		formdata.append('name', namecategory)
+
+		debugger
+
+		const response = await fetch('http://localhost:1337/api/createCategory', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name: namecategory,
+			}),
+		})
+
+		const data = await response.json()
+		if (data.status) {
+			alert('Categoria creada correctamente');
+		}
+
+	}
+
+	return (
+		<div>
+			<h1>Crear Categorias</h1>
+			<form onSubmit={addProduct}>
+				<input
+					value={namecategory}
+					onChange={(e) => setNameCategory(e.target.value)}
+					type="text"
+					placeholder="Nombre de la Categoria"
+				/>
+				<br />
+				<input type="submit" value="Crear Categoria" />
+			</form>
+		</div>
+	)
+}
+
+export default Categorias

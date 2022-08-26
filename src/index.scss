@@ -110,3 +110,124 @@ code {
   }
 
 }
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.container-detailproduct {
+    height: 80vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .title-container {
+        width: 555px;
+        display: flex;
+        justify-content: center;
+        height: 92px;
+        align-items: center;
+        border-radius: 10%;
+        background: #726d6d;
+        color: white;
+    }
+}
+
+.container-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .span-desc {
+        font-size: 28px;
+        background: #ededed;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .p-desc {
+        font-size: 22px;
+        background: #ededed;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+    .span-pre {
+        font-size: 28px;
+        background: #d9d5d5;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .p-pre {
+        font-size: 22px;
+        background: #d9d5d5;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+
+    .p-desc {
+        font-size: 22px;
+        background: #d9d5d5;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+
+    .span-stc {
+        font-size: 28px;
+        background: #c3bebe;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .p-stc {
+        font-size: 22px;
+        background: #c3bebe;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+
+    .span-cat {
+        font-size: 28px;
+        background: #aeaaaa;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .p-cat {
+        font-size: 22px;
+        background: #aeaaaa;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+}
+
+.container-buttom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #8b8686;
+    padding: 25px;
+    align-items: center;
+}
