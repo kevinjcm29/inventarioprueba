@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import AgregarProducto from './pages/agregarProducto'
 import ListadoDeProductos from './pages/ListadodeProductos'
 import Categorias from './pages/categorias'
+import ListadoDeCategorias from './pages/ListadodeCategorias'
 
 const App = () => {
 	let token = localStorage.getItem('token')
@@ -59,7 +60,7 @@ const App = () => {
 							</li> : null}
 
 							{ token ? <li className="nav-item">
-								<a className="nav-link" href='/categorias'>Crear Categorias</a>
+								<a className="nav-link" href='/crearcategorias'>Crear Categorias</a>
 							</li> : null }
 
 							{ token ? <li className="nav-item">
@@ -67,7 +68,11 @@ const App = () => {
 							</li> : null }
 
 							{ token ? <li className="nav-item">
-								<a className="nav-link" href='/productos'>Listado de Produuctos</a>
+								<a className="nav-link" href='/productos'>Listado de Productos</a>
+							</li> : null }
+
+							{ token ? <li className="nav-item">
+								<a className="nav-link" href='/categorias'>Listado de Categorias</a>
 							</li> : null }
 						</ul>
 					</div>
@@ -114,9 +119,10 @@ const App = () => {
 				<Route path="/login" exact component={Login} />
 				<Route path="/register" exact component={Register} />
 				<Route path="/dashboard" exact component={Dashboard} />
-				<Route path="/categorias" exact component={Categorias} />
+				<Route path="/crearcategorias" exact component={Categorias} />
 				<Route path="/agregarproducto" exact component={AgregarProducto} />
 				<Route path="/productos" exact component={ListadoDeProductos} />
+				<Route path="/categorias" exact component={ListadoDeCategorias} />
 			</BrowserRouter>
 		</div>
 	)
