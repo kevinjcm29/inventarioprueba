@@ -10,11 +10,9 @@ const Categorias = () => {
 	}
 
 	async function addProduct(event) {
-
+		event.preventDefault();
 		const formdata = new FormData()
 		formdata.append('name', namecategory)
-
-		debugger
 
 		const response = await fetch('http://localhost:1337/api/createCategory', {
 			method: 'POST',
@@ -29,6 +27,9 @@ const Categorias = () => {
 		const data = await response.json()
 		if (data.status) {
 			alert('Categoria creada correctamente');
+			window.location.reload()
+		} else {
+			alert(data.message);
 		}
 
 	}

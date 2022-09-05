@@ -59,6 +59,8 @@ const AgregarProducto = () => {
 		if (data.status) {
 			alert('Producto Creado Correctamente');
 			window.location.href = 'http://localhost:3000/productos';
+		} else {
+			alert(data.message);
 		}
 
 	}
