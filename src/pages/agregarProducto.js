@@ -5,7 +5,7 @@ import { useState } from 'react'
 const AgregarProducto = () => {
 	const [category, categories] = useState()
     async function populateQuote() {
-        const req = await fetch('http://localhost:1337/api/getCategories')
+        const req = await fetch('https://inventariokev589.herokuapp.com/api/getCategories')
 
         const data = await req.json()
         categories(data.category)
@@ -48,7 +48,7 @@ const AgregarProducto = () => {
 		formdata.append('category', categoryS)
 
 
-		const response = await fetch('http://localhost:1337/api/createProduct', {
+		const response = await fetch('https://inventariokev589.herokuapp.com/api/createProduct', {
 			method: 'POST',
 			body: formdata
 		})

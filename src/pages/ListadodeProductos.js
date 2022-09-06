@@ -19,27 +19,26 @@ const ListadoDeProductos = () => {
 
 
     async function populateQuote() {
-        const req = await fetch('http://localhost:1337/api/getProducts')
+        const req = await fetch('https://inventariokev589.herokuapp.com/api/getProducts')
 
         const data = await req.json()
         if (!data.status) {
 			alert(data.message);
 		}
-        productos(data.products)
     }
 
     async function filterByProductName() {
-        const req = await fetch(`http://localhost:1337/api/getProductsbyName/${productNameSearch}`)
+        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProductsbyName/${productNameSearch}`)
 
         const data = await req.json()
         if (!data.status) {
 			alert(data.message);
 		}
-        productos(data.products)
+        productos(data._products)
     }
 
     async function filterByCategoryandName() {
-        const req = await fetch(`http://localhost:1337/api/getProductsbyFilterandName/${filterNameCat}/${productNameSearch}`)
+        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProductsbyFilterandName/${filterNameCat}/${productNameSearch}`)
 
         const data = await req.json()
         if (data.products !== undefined && data.products.length > 0) {
@@ -66,7 +65,7 @@ const ListadoDeProductos = () => {
     }
 
     async function deleteProduct(productID) {
-        const req = await fetch('http://localhost:1337/api/deleteProduct', {
+        const req = await fetch('https://inventariokev589.herokuapp.com/api/deleteProduct', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -85,7 +84,7 @@ const ListadoDeProductos = () => {
     }
 
     async function loadDetailProduct(productID) {
-        const req = await fetch(`http://localhost:1337/api/getProduct/${productID}`)
+        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProduct/${productID}`)
 
 
         const data = await req.json()
@@ -97,7 +96,7 @@ const ListadoDeProductos = () => {
 
 
     async function setCategories() {
-        const req = await fetch('http://localhost:1337/api/getCategories')
+        const req = await fetch('https://inventariokev589.herokuapp.com/api/getCategories')
 
         const data = await req.json()
         if (!data.status) {
@@ -121,7 +120,7 @@ const ListadoDeProductos = () => {
         formdata.append('stock', stock)
 
 
-        const response = await fetch('http://localhost:1337/api/updateProduct', {
+        const response = await fetch('https://inventariokev589.herokuapp.com/api/updateProduct', {
             method: 'PUT',
             body: JSON.stringify({
                 productID: productID,
@@ -158,7 +157,7 @@ const ListadoDeProductos = () => {
     async function filterbyCategory({ name }) {
         setfilterNameCat(name);
         settoggleByCategory(true)
-        const req = await fetch(`http://localhost:1337/api/getProductsbyFilter/${name}`)
+        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProductsbyFilter/${name}`)
 
         const data = await req.json()
         if (!data.status) {
@@ -196,7 +195,7 @@ const ListadoDeProductos = () => {
 
     return (
         <div>
-            {product.length > 0 && detailProduct === undefined && editarProduct === false ? <><h1>Listado de Productos</h1>
+            {product !== undefined && product.length > 0 && detailProduct === undefined && editarProduct === false ? <><h1>Listado de Productos</h1>
                 <div>
                     <span>Filtrar por Categorias:</span>
                     <Select

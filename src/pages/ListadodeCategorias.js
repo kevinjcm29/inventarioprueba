@@ -9,7 +9,7 @@ const ListadoDeCategorias = () => {
     const [categoryID, setCategoryID] = useState();
     const [categoryNameSearch, setcategoryNameSearch] = useState('')
     async function populateQuote() {
-        const req = await fetch('http://localhost:1337/api/getCategories')
+        const req = await fetch('https://inventariokev589.herokuapp.com/api/getCategories')
 
         const data = await req.json()
         if (!data.status) {
@@ -19,7 +19,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function filterByCategoryName() {
-        const req = await fetch(`http://localhost:1337/api/getCategorybyName/${categoryNameSearch}`)
+        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getCategorybyName/${categoryNameSearch}`)
 
         const data = await req.json()
         if (!data.status) {
@@ -29,7 +29,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function deleteCategory(categoryID) {
-        const req = await fetch('http://localhost:1337/api/deleteCategory', {
+        const req = await fetch('https://inventariokev589.herokuapp.com/api/deleteCategory', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function loadCategoryDetail(categoryID) {
-        const req = await fetch(`http://localhost:1337/api/getCategory/${categoryID}`)
+        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getCategory/${categoryID}`)
 
 
         const data = await req.json()
@@ -59,7 +59,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function editCategoryDetail(event) {
-        const response = await fetch('http://localhost:1337/api/updateCategory', {
+        const response = await fetch('https://inventariokev589.herokuapp.com/api/updateCategory', {
             method: 'PUT',
             body: JSON.stringify({
                 categoryID: categoryID,
