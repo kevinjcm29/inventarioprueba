@@ -14,7 +14,7 @@ const App = () => {
 	const logout = () => {
 		localStorage.clear();
 		token = null;
-		window.location.href = 'http://localhost:3000';
+		window.location.href = '/';
 	}
  
 	return (

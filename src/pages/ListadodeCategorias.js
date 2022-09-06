@@ -74,7 +74,7 @@ const ListadoDeCategorias = () => {
 
         if (data.status) {
             alert('Categoria Editado Correctamente');
-            window.location.href = 'http://localhost:3000/categorias';
+            window.location.href = '/categorias';
         } else {
             alert(data.message)
         }
@@ -168,7 +168,7 @@ const ListadoDeCategorias = () => {
                     </div>
                 })}</> : ''}
 
-            {category !== undefined && category.length === 0 && !editarCategory && categoryNameSearch === '' ?
+            {category !== undefined && category.length === 0 && !editarCategory && !detailCategory && categoryNameSearch === '' ?
                 <>
                     <h1>No hay categorias creadas</h1>
                 </>
@@ -220,7 +220,7 @@ const ListadoDeCategorias = () => {
                 </div>
             </> : ''}
 
-            {category !== undefined && category.length === 0 && !editarCategory && categoryNameSearch !== '' ? <>
+            {category !== undefined && category.length === 0 && !detailCategory && !editarCategory && categoryNameSearch !== '' ? <>
                 <div>
                     <h1>No hay categorias por el nombre {categoryNameSearch}</h1>
 

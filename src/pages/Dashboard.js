@@ -34,7 +34,7 @@ const Dashboard = () => {
 		}
 
 		if (token === null) {
-			window.location.href = 'http://localhost:3000/login';
+			window.location.href = '/login';
 		}
 	}, [populateQuote])  // eslint-disable-line react-hooks/exhaustive-deps
 

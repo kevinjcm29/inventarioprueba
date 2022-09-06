@@ -112,7 +112,7 @@ const ListadoDeProductos = () => {
     }
 
     async function editProductAsync(event) {
-        console.log(productID)
+        event.preventDefault();
         const formdata = new FormData()
         formdata.append('productID', productID)
         formdata.append('name', nameproduct)
@@ -138,10 +138,9 @@ const ListadoDeProductos = () => {
             },
         })
         const data = await response.json()
-
         if (data.status) {
             alert('Producto Editado Correctamente');
-            window.location.href = 'http://localhost:3000/productos';
+            window.location.href = '/productos';
         } else {
             alert(data.message)
         }

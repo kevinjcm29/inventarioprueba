@@ -28,7 +28,7 @@ const AgregarProducto = () => {
 
 
 	if (token === null) {
-		window.location.href = 'http://localhost:3000/login';
+		window.location.href = '/login';
 	}
 
 	async function addProduct(event) {
@@ -58,7 +58,7 @@ const AgregarProducto = () => {
 
 		if (data.status) {
 			alert('Producto Creado Correctamente');
-			window.location.href = 'http://localhost:3000/productos';
+			window.location.href = '/productos';
 		} else {
 			alert(data.message);
 		}

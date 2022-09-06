@@ -6,7 +6,7 @@ const Categorias = () => {
 	const [namecategory, setNameCategory] = useState('');;
 
 	if (token === null) {
-		window.location.href = 'http://localhost:3000/login';
+		window.location.href = '/login';
 	}
 
 	async function addProduct(event) {
