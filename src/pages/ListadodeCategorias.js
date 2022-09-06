@@ -9,7 +9,7 @@ const ListadoDeCategorias = () => {
     const [categoryID, setCategoryID] = useState();
     const [categoryNameSearch, setcategoryNameSearch] = useState('')
     async function populateQuote() {
-        const req = await fetch('https://inventariokev589.herokuapp.com/api/getCategories')
+        const req = await fetch('https://inventariobackend-production.up.railway.app/api/getCategories')
 
         const data = await req.json()
         if (!data.status) {
@@ -19,7 +19,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function filterByCategoryName() {
-        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getCategorybyName/${categoryNameSearch}`)
+        const req = await fetch(`https://inventariobackend-production.up.railway.app/api/getCategorybyName/${categoryNameSearch}`)
 
         const data = await req.json()
         if (!data.status) {
@@ -29,7 +29,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function deleteCategory(categoryID) {
-        const req = await fetch('https://inventariokev589.herokuapp.com/api/deleteCategory', {
+        const req = await fetch('https://inventariobackend-production.up.railway.app/api/deleteCategory', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function loadCategoryDetail(categoryID) {
-        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getCategory/${categoryID}`)
+        const req = await fetch(`https://inventariobackend-production.up.railway.app/api/getCategory/${categoryID}`)
 
 
         const data = await req.json()
@@ -59,7 +59,7 @@ const ListadoDeCategorias = () => {
     }
 
     async function editCategoryDetail(event) {
-        const response = await fetch('https://inventariokev589.herokuapp.com/api/updateCategory', {
+        const response = await fetch('https://inventariobackend-production.up.railway.app/api/updateCategory', {
             method: 'PUT',
             body: JSON.stringify({
                 categoryID: categoryID,
@@ -168,6 +168,12 @@ const ListadoDeCategorias = () => {
                     </div>
                 })}</> : ''}
 
+            {category !== undefined && category.length === 0 && !editarCategory && categoryNameSearch === '' ?
+                <>
+                    <h1>No hay categorias creadas</h1>
+                </>
+            :''}
+
             {detailCategory && !editarCategory ? <>
                 <div className="container-detailproduct" style={{ backgroundImage: "url(https://ipmark.com/wp-content/uploads/2016/12/Bodeg%C3%B3n-Productos-del-A%C3%B1o-2017.jpg)" }}>
                     <div className="title-container">
@@ -214,7 +220,7 @@ const ListadoDeCategorias = () => {
                 </div>
             </> : ''}
 
-            {category !== undefined && category.length === 0 && !editarCategory ? <>
+            {category !== undefined && category.length === 0 && !editarCategory && categoryNameSearch !== '' ? <>
                 <div>
                     <h1>No hay categorias por el nombre {categoryNameSearch}</h1>
 

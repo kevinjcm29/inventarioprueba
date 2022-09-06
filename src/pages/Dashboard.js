@@ -6,7 +6,7 @@ const Dashboard = () => {
 	const history = useHistory()
 	let userName = localStorage.getItem('user')
 	async function populateQuote() {
-		const req = await fetch('https://inventariokev589.herokuapp.com/api/authenticate', {
+		const req = await fetch('https://inventariobackend-production.up.railway.app/api/authenticate', {
 			headers: {
 				'x-access-token': localStorage.getItem('token'),
 			},

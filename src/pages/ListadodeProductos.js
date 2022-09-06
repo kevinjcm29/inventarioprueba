@@ -19,26 +19,28 @@ const ListadoDeProductos = () => {
 
 
     async function populateQuote() {
-        const req = await fetch('https://inventariokev589.herokuapp.com/api/getProducts')
+        const req = await fetch('https://inventariobackend-production.up.railway.app/api/getProducts')
 
         const data = await req.json()
         if (!data.status) {
 			alert(data.message);
 		}
+
+        productos(data.products)
     }
 
     async function filterByProductName() {
-        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProductsbyName/${productNameSearch}`)
+        const req = await fetch(`https://inventariobackend-production.up.railway.app/api/getProductsbyName/${productNameSearch}`)
 
         const data = await req.json()
         if (!data.status) {
 			alert(data.message);
 		}
-        productos(data._products)
+        productos(data.products)
     }
 
     async function filterByCategoryandName() {
-        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProductsbyFilterandName/${filterNameCat}/${productNameSearch}`)
+        const req = await fetch(`https://inventariobackend-production.up.railway.app/api/getProductsbyFilterandName/${filterNameCat}/${productNameSearch}`)
 
         const data = await req.json()
         if (data.products !== undefined && data.products.length > 0) {
@@ -65,7 +67,7 @@ const ListadoDeProductos = () => {
     }
 
     async function deleteProduct(productID) {
-        const req = await fetch('https://inventariokev589.herokuapp.com/api/deleteProduct', {
+        const req = await fetch('https://inventariobackend-production.up.railway.app/api/deleteProduct', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -84,7 +86,7 @@ const ListadoDeProductos = () => {
     }
 
     async function loadDetailProduct(productID) {
-        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProduct/${productID}`)
+        const req = await fetch(`https://inventariobackend-production.up.railway.app/api/getProduct/${productID}`)
 
 
         const data = await req.json()
@@ -96,7 +98,7 @@ const ListadoDeProductos = () => {
 
 
     async function setCategories() {
-        const req = await fetch('https://inventariokev589.herokuapp.com/api/getCategories')
+        const req = await fetch('https://inventariobackend-production.up.railway.app/api/getCategories')
 
         const data = await req.json()
         if (!data.status) {
@@ -120,7 +122,7 @@ const ListadoDeProductos = () => {
         formdata.append('stock', stock)
 
 
-        const response = await fetch('https://inventariokev589.herokuapp.com/api/updateProduct', {
+        const response = await fetch('https://inventariobackend-production.up.railway.app/api/updateProduct', {
             method: 'PUT',
             body: JSON.stringify({
                 productID: productID,
@@ -157,7 +159,7 @@ const ListadoDeProductos = () => {
     async function filterbyCategory({ name }) {
         setfilterNameCat(name);
         settoggleByCategory(true)
-        const req = await fetch(`https://inventariokev589.herokuapp.com/api/getProductsbyFilter/${name}`)
+        const req = await fetch(`https://inventariobackend-production.up.railway.app/api/getProductsbyFilter/${name}`)
 
         const data = await req.json()
         if (!data.status) {
@@ -195,7 +197,7 @@ const ListadoDeProductos = () => {
 
     return (
         <div>
-            {product !== undefined && product.length > 0 && detailProduct === undefined && editarProduct === false ? <><h1>Listado de Productos</h1>
+            {product.length > 0 && detailProduct === undefined && editarProduct === false ? <><h1>Listado de Productos</h1>
                 <div>
                     <span>Filtrar por Categorias:</span>
                     <Select
@@ -256,26 +258,42 @@ const ListadoDeProductos = () => {
                     <div>
                         {toggleByCategory && productNameSearch === '' ? <>
                             <h1>No hay productos en la categoria {filterNameCat}</h1>
-                        </> : ''}
-
-                        {productNameSearch !== '' && toggleByCategory === false ? <>
-                            <h1>No hay productos por el nombre {productNameSearch}</h1>
-                        </> : ''}
-
-                        {toggleByCategory && productNameSearch !== '' ? <>
-                            <h1>No hay productos en la categoria {filterNameCat} por el nombre {productNameSearch}</h1>
-                        </> : ''}
-
-                        <div>
+                            <div>
                             <button onClick={limpiarFiltros}>Volver <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-backspace" viewBox="0 0 16 16">
                                 <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z" />
                                 <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z" />
                             </svg></button>
                         </div>
+                        </> : ''}
+
+                        {productNameSearch !== '' && toggleByCategory === false ? <>
+                            <h1>No hay productos por el nombre {productNameSearch}</h1>
+                            <div>
+                            <button onClick={limpiarFiltros}>Volver <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-backspace" viewBox="0 0 16 16">
+                                <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z" />
+                                <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z" />
+                            </svg></button>
+                        </div>
+                        </> : ''}
+
+                        {toggleByCategory && productNameSearch !== '' ? <>
+                            <h1>No hay productos en la categoria {filterNameCat} por el nombre {productNameSearch}</h1>
+                            <div>
+                            <button onClick={limpiarFiltros}>Volver <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-backspace" viewBox="0 0 16 16">
+                                <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z" />
+                                <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z" />
+                            </svg></button>
+                        </div>
+                        </> : ''}
                     </div>
                 </>
                 : ''}
-
+            
+            {product !== undefined && product.length === 0 && detailProduct === undefined && editarProduct === false && filterNameCat === '' && productNameSearch === '' ?
+                <>
+                    <h1>No hay productos creados</h1>
+                </>
+            : ''}
 
             {detailProduct && !editarProduct ? <>
                 <div className="container-detailproduct" style={{ backgroundImage: "url(https://ipmark.com/wp-content/uploads/2016/12/Bodeg%C3%B3n-Productos-del-A%C3%B1o-2017.jpg)" }}>

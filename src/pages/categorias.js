@@ -14,7 +14,7 @@ const Categorias = () => {
 		const formdata = new FormData()
 		formdata.append('name', namecategory)
 
-		const response = await fetch('https://inventariokev589.herokuapp.com/api/createCategory', {
+		const response = await fetch('https://inventariobackend-production.up.railway.app/api/createCategory', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
